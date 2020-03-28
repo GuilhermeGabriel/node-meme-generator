@@ -1,0 +1,55 @@
+Arguments: 
+  /usr/bin/node /usr/bin/yarn
+
+PATH: 
+  /home/matheus/.zinit/polaris/bin:/home/matheus/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/var/lib/snapd/snap/bin:/home/matheus/.yarn/bin:/opt/android/sdk/tools:/opt/android/sdk/platform-tools
+
+Yarn version: 
+  1.22.4
+
+Node version: 
+  13.11.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  SyntaxError: /home/matheus/Documents/Node/DrauzioBot/nodejs-meme-generator/package.json: Unexpected token } in JSON at position 72
+      at JSON.parse (<anonymous>)
+      at /usr/lib/node_modules/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/lib/node_modules/yarn/lib/cli.js:310:30)
+      at /usr/lib/node_modules/yarn/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "dependencies": {
+      "axios": "^0.19.2",
+      "canvas": "^2.6.1",
+    },
+    "name": "nodejs-meme-generator",
+    "version": "1.0.4",
+    "description": "Nodejs promise-based meme generator, it takes an image as url and top/bottom text to generate meme as Buffer",
+    "main": "index.js",
+    "devDependencies": {},
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "TehZarathustra/nodejs-meme-generator"
+    },
+    "keywords": [
+      "nodejs",
+      "meme",
+      "generator"
+    ],
+    "author": "TehZarathustra",
+    "license": "ISC"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
