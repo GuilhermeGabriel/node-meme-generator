@@ -1,7 +1,5 @@
-const axios = require('axios');
 const {
   createCanvas,
-  loadImage,
   Image
 } = require('canvas');
 
@@ -11,6 +9,8 @@ const {
  * @constructor
  * @param {Object} userConfig {canvasOptions, fontOptions}
  */
+
+
 function MemeGenerator(userConfig = {}) {
   const {
     canvasOptions,
@@ -22,7 +22,7 @@ function MemeGenerator(userConfig = {}) {
       canvasHeight: 500,
     },
     fontOptions: {
-      fontFamily: 'impact',
+      fontFamily: 'Comic Sans',
       fontSize: 46,
       lineHeight: 2,
     },
@@ -45,7 +45,7 @@ function MemeGenerator(userConfig = {}) {
 MemeGenerator.prototype.setCanvas = function (options) {
   const {
     canvasWidth,
-    canvasHeight
+    canvasHeight,
   } = options;
   const canvas = createCanvas(canvasWidth, canvasHeight);
 
@@ -54,11 +54,6 @@ MemeGenerator.prototype.setCanvas = function (options) {
   this.ctx = canvas.getContext('2d');
   this.canvasImg = new Image();
 
-  this.ctx.lineWidth = 2;
-  this.ctx.mutterLine = 2;
-  this.ctx.fillStyle = 'white';
-  this.ctx.strokeStyle = 'black';
-  this.ctx.textAlign = 'center';
 };
 
 /**
@@ -108,8 +103,8 @@ MemeGenerator.prototype.generateMeme = function (imageOptions) {
 
     this.calculateCanvasSize();
     this.drawMeme();
-    
-    resolve(this.canvas.toDataURL());
+
+    resolve(this.canvas.toBuffer());
 
   });
 };
@@ -142,8 +137,15 @@ MemeGenerator.prototype.drawMeme = function () {
     wrapText,
   } = this;
 
+
+
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.drawImage(canvasImg, 0, 0, memeWidth, memeHeight);
+
+  ctx.lineWidth = 2;
+  ctx.fillStyle = '#FFFF00';
+  ctx.strokeStyle = '#000000';
+  ctx.textAlign = 'center';
 
   const x = memeWidth / 2;
   let y;
@@ -210,13 +212,9 @@ MemeGenerator.prototype.wrapText = function (
       context, text, x, y, maxWidth, lineHeightRatio, fromBottom, fontSize - 2, fontFamily,
     );
   } else {
-    // eslint-disable-next-line no-restricted-syntax
-    context.textAlign = "center";
-    context.fillStyle = 'yellow';
-    context.strokeStyle = 'black';
-    context.lineWidth = 3
+    
 
-    for(const k in lines) {
+    for (const k in lines) {
       if (fromBottom) {
         context.strokeText(lines[k], x, y - lineHeight * k);
         context.fillText(lines[k], x, y - lineHeight * k);

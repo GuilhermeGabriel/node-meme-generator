@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "axios": "^0.19.2",
     "canvas": "^2.6.1"
   },
   "name": "nodejs-meme-generator",
