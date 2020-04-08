@@ -157,7 +157,7 @@ MemeGenerator.prototype.drawMeme = function () {
   if (bottomText) {
     const lineBreaks = bottomText.split('\n').length + 1
 
-    y = lineBreaks > 0 ?
+    y = lineBreaks > 1 ?
       memeHeight - 80 - lineBreaks * fontSize : memeHeight - 80;
     
     this.ctx.textBaseline = 'bottom';
