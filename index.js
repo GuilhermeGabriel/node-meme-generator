@@ -154,9 +154,9 @@ MemeGenerator.prototype.drawMeme = function () {
   }
 
   if (bottomText) {
-    //console.log(bottomText.split('\n'))
+    
     const lineBreaks = bottomText.split('\n').length 
-    console.log(lineBreaks)
+    
 
     y = lineBreaks > 1 ?
       memeHeight - (lineBreaks*10) - (lineBreaks+1) * fontSize : memeHeight - 50;
@@ -184,7 +184,7 @@ MemeGenerator.prototype.wrapText = function (
   if (!text) {
     return;
   }
-  //console.log(text)
+  
   context.font = `bold ${fontSize}pt ${fontFamily}`;
   maxWidth = maxWidth - 35;
 
@@ -216,7 +216,7 @@ MemeGenerator.prototype.wrapText = function (
   lines[pushMethod](line);
 
 
-  console.log(lines)
+  
   if (lines.length > 10) {
     MemeGenerator.prototype.wrapText(
       context, text, x, y, maxWidth, lineHeightRatio, fromBottom, fontSize - 2, fontFamily,
