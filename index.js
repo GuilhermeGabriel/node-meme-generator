@@ -108,7 +108,7 @@ MemeGenerator.prototype.generateMeme = function (imageOptions) {
     this.calculateCanvasSize();
     this.drawMeme();
 
-    resolve(this.canvas.toBuffer());
+    resolve(this.canvas.toDataURL());
 
   });
 };
@@ -243,4 +243,5 @@ MemeGenerator.prototype.wrapText = function (
 };
 
 module.exports = MemeGenerator;
+
 
