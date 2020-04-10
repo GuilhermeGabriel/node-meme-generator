@@ -1,4 +1,3 @@
-const axios = require('axios');
 const {
   createCanvas,
   loadImage,
@@ -109,7 +108,7 @@ MemeGenerator.prototype.generateMeme = function (imageOptions) {
     this.calculateCanvasSize();
     this.drawMeme();
 
-    resolve(this.canvas.toDataURL());
+    resolve(this.canvas.toBuffer());
 
   });
 };
@@ -155,10 +154,12 @@ MemeGenerator.prototype.drawMeme = function () {
   }
 
   if (bottomText) {
-    const lineBreaks = bottomText.split('\n').length + 1
+    //console.log(bottomText.split('\n'))
+    const lineBreaks = bottomText.split('\n').length 
+    console.log(lineBreaks)
 
     y = lineBreaks > 1 ?
-      memeHeight - 80 - lineBreaks * fontSize : memeHeight - 80;
+      memeHeight - (lineBreaks*10) - (lineBreaks+1) * fontSize : memeHeight - 50;
     
     this.ctx.textBaseline = 'bottom';
     wrapText(ctx, bottomText, x, y, memeWidth, lineHeight, true, fontSize, fontFamily);
@@ -215,7 +216,7 @@ MemeGenerator.prototype.wrapText = function (
   lines[pushMethod](line);
 
 
-
+  console.log(lines)
   if (lines.length > 10) {
     MemeGenerator.prototype.wrapText(
       context, text, x, y, maxWidth, lineHeightRatio, fromBottom, fontSize - 2, fontFamily,
@@ -242,3 +243,4 @@ MemeGenerator.prototype.wrapText = function (
 };
 
 module.exports = MemeGenerator;
+
