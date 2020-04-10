@@ -1,5 +1,23 @@
-# Sobre
+# node-meme-generator
+
+Transforma o texto recebido de tweets em memes.
+
+## Créditos
+
 Módulo feito com base no pacote [nodejs-meme-generator.](https://github.com/TehZarathustra/nodejs-meme-generator#readme "Autor: TehZarathustra")
+
+## Instalação
+
+Adicione ```"nodejs-meme-generator": "https://github.com/matheusferr/node-meme-generator.git"``` no package.json:
+
+```
+ "dependencies": {
+    "nodejs-meme-generator": "https://github.com/matheusferr/node-meme-generator.git"    
+  },
+```
+Em seguida, execute o comando de instalação do seu gerenciador de pacotes:
+
+```npm i``` ou ```yarn```
 
 ## Exemplo de uso
 ```
@@ -25,9 +43,8 @@ stream.on('tweet', async (tweet) => {
   try {
     const tweetID = tweet.id_str;
     const userName = tweet.user.screen_name;
-    const {
-      truncated,
-    } = tweet;
+    const { truncated } = tweet;
+    
     // Recebe o texto do tweet de acordo com seu tipo: compat | extended;
     const memeText = truncated ? tweet.extended_tweet.full_text : tweet.text;
 
@@ -96,4 +113,61 @@ stream.on('tweet', async (tweet) => {
     console.log(`Erro na streaming API: ${f}`);
   }
 });
+```
+
+## Métodos
+
+**MemeLib({canvasOptions, fontOptions})**
+
+canvasOptions
+
+| Parâmetro     | Tipo   |
+| ------------- |:------:|
+| canvasWidth   | number |
+| canvasHeight  | number |
+
+fontOptions
+
+| Parâmetro     | Tipo   |
+| ------------- |:------:|
+| fontFamily    | string |
+| fontSize      | number |
+| lineHeight    | number |
+
+
+```
+const memeGenerator = new MemeLib({
+        canvasOptions: {
+          canvasWidth: 1280,
+          canvasHeight: 720
+        },
+        fontOptions: {
+          fontSize: 12,
+          fontFamily: 'Arial',
+          lineHeight: 1.5,
+        },
+      });
+```
+
+
+**generateMeme(options)**
+
+options
+
+| Parâmetro     | Tipo   |
+| ------------- |:------:|
+| topText       | string |
+| BottomText    | string |
+| url           | Buffer |
+
+**retorna uma string base64**
+
+```
+generateMeme({
+        topText: 'Lorem',
+        bottomText: 'Ipsum',
+        url: Buffer,
+      }).then((meme) => {
+      //Faça alguma coisa
+      })
 ```
